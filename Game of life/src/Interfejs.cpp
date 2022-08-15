@@ -32,7 +32,7 @@ void Interfejs::menu()
     system("cls");
     cout << "GAME OF LIFE - 2022"<<endl<<endl;
     cout << "MENU GRY" << endl;
-    showConfig();
+    pokazUstawienia();
     cout << "Co chcesz zrobic?"<<endl<<endl;
     cout << "\t1 - Rozpocznij"<<endl;
     cout << "\t2 - Zmien parametry"<<endl;
@@ -48,11 +48,11 @@ void Interfejs::menu()
     switch(wybor)
     {
     case '1':
-        //utworz_gre();
-        menu();
+        symulacja->start();
+        //menu();
         break;
     case '2':
-        changeParams(false, H,L);
+        zmienUstawienia(false, H,L);
         menu();
         break;
     case '3':
@@ -60,7 +60,7 @@ void Interfejs::menu()
     }
 }
 
-void Interfejs::showConfig()
+void Interfejs::pokazUstawienia()
 {
     cout <<"__________________________________________"<<endl;
     cout << "Aktualne ustawienia:"<<endl;
@@ -69,10 +69,10 @@ void Interfejs::showConfig()
 }
 
 
-void Interfejs::changeParams(bool change, short temp_H, short temp_L)
+void Interfejs::zmienUstawienia(bool zmien, short temp_H, short temp_L)
 {
     system("cls");
-    showConfig();
+    pokazUstawienia();
     cout<<endl;
     cout<<"Co chcesz zrobic?"<<endl;
     cout<<"W - Zmien wysokosc planszy"<<endl;
@@ -89,16 +89,16 @@ void Interfejs::changeParams(bool change, short temp_H, short temp_L)
     {
     case 'W':
         cout<<"Podaj wysokosc planszy:"<<endl;
-        H = getData(5,30);
-        changeParams(true, H,L);
+        H = pobierzDane(5,30);
+        zmienUstawienia(true, H,L);
         return;
     case 'S':
         cout<<"Podaj szerokosc planszy:"<<endl;
-        L = getData(5,30);
-        changeParams(true, H,L);
+        L = pobierzDane(5,30);
+        zmienUstawienia(true, H,L);
         return;
     case 'Z':
-        if(change)
+        if(zmien)
         {
             cout<<"Czy zapisac zmiany[T/N]"<<endl;
             do
@@ -123,7 +123,7 @@ void Interfejs::changeParams(bool change, short temp_H, short temp_L)
 
 }
 
-short Interfejs::getData(short a, short b)
+short Interfejs::pobierzDane(short a, short b)
 {
     short out;
     cin>>out;
@@ -136,4 +136,11 @@ short Interfejs::getData(short a, short b)
     }
     cin.ignore(9999,'\n');
     return out;
+}
+
+void Interfejs::zainicjujSymulacje()
+{
+    symulacja = new Symulacja;
+    symulacja->start();
+    delete symulacja;
 }
