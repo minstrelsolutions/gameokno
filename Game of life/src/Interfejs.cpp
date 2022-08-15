@@ -48,8 +48,8 @@ void Interfejs::menu()
     switch(wybor)
     {
     case '1':
-        symulacja->start();
-        //menu();
+        zainicjujSymulacje();
+        menu();
         break;
     case '2':
         zmienUstawienia(false, H,L);
@@ -142,5 +142,5 @@ void Interfejs::zainicjujSymulacje()
 {
     symulacja = new Symulacja;
     symulacja->start();
-    delete symulacja;
+    //delete symulacja;
 }

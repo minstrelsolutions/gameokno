@@ -18,8 +18,7 @@ class Plansza
 
     private:
         char** plansza;
-        char granica_pozioma = '_';
-        char granica_pionowa = '|';
+        char granica = '#';
 };
 
 #endif // PLANSZA_H
